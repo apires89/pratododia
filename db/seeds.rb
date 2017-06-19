@@ -11,6 +11,11 @@ Review.destroy_all
 User.destroy_all
 Special.destroy_all
 
+restadr = {[]}
+
+
+
+
 
 puts "Creating Restaurants"
 
@@ -28,6 +33,15 @@ puts "Creating Restaurants"
   user.save!
   if i.even?
     restaurant = Restaurant.new({
+      name: Faker::GameOfThrones,
+      address: Faker::Address.street_address,
+      city: "Lisboa",
+      postcode: Faker::Address.postcode,
+      country: Faker::Country
+
+
+
+
 
       })
 

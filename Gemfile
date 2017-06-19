@@ -22,6 +22,7 @@ gem 'uglifier'
 gem 'omniauth-facebook'
 gem "gmaps4rails"
 gem 'faker'
+gem 'google_places'
 
 
 gem "geocoder"
