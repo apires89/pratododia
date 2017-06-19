@@ -6,7 +6,28 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Restaurant.delete.all
+Restaurant.destroy_all
+Review.destroy_all
+User.destroy_all
+Special.destroy_all
+
 
 puts "Creating Restaurants"
+
+10.times do |i|
+  user = User.new({
+    phone_number: Faker::PhoneNumber.cell_phone,
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name
+    })
+  user.email = "testicule#{i}@example.com"
+  user.password = 'password'
+  user.password_confirmation = 'password'
+  user.save!
+  user.facebook_picture_url = Faker::Avatar.image
+  user.save!
+  if i.even?
+    restaurant = Restaurant.new({
+
+      })
 
