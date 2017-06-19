@@ -10,6 +10,17 @@
   justify-content: space-between;
 }
 
+.navbar-transparent {
+  background: non !important;
+  transition: all 0.3s ease;
+  display: flex;
+  height: 70px;
+  padding: 0px 30px;
+  align-items: center;
+  justify-content: space-between;
+
+}
+
 /* Optional class to fix the navbar on top */
 .navbar-wagon-fixed {
   position: fixed;
@@ -128,4 +139,14 @@
   transform: rotate(45deg);
   border-left: 1px solid #E6E6E6;
   border-top: 1px solid #E6E6E6;
+}
+
+.navbar-text-brand {
+color: white;
+text-decoration: none;
+font-family:$header-font;
+font-size: 26px;
+    &:hover {
+      text-decoration: none;
+    }
 }

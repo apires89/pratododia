@@ -1,0 +1,5 @@
+<div class="search-wrapper">
+  <%= simple_form_for :search, url: search_path do |f| %>
+    <%= f.input :query, input_html: { value: nil }, label: false, placeholder: "Bacalhau da Maria" %>
+  <% end %>
+</div>
