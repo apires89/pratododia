@@ -10,10 +10,56 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170619132502) do
+ActiveRecord::Schema.define(version: 20170619135003) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "restaurant_specials", force: :cascade do |t|
+    t.date     "data"
+    t.text     "desciption"
+    t.integer  "special_id"
+    t.integer  "restaurant_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["restaurant_id"], name: "index_restaurant_specials_on_restaurant_id", using: :btree
+    t.index ["special_id"], name: "index_restaurant_specials_on_special_id", using: :btree
+  end
+
+  create_table "restaurants", force: :cascade do |t|
+    t.text     "address"
+    t.string   "city"
+    t.string   "postcode"
+    t.string   "phone"
+    t.string   "website"
+    t.string   "email"
+    t.string   "facebook"
+    t.integer  "capacity"
+    t.text     "description"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["user_id"], name: "index_restaurants_on_user_id", using: :btree
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "restaurant_id"
+    t.integer  "star"
+    t.text     "description"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["restaurant_id"], name: "index_reviews_on_restaurant_id", using: :btree
+    t.index ["user_id"], name: "index_reviews_on_user_id", using: :btree
+  end
+
+  create_table "specials", force: :cascade do |t|
+    t.string   "type"
+    t.string   "name"
+    t.string   "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -32,4 +78,9 @@ ActiveRecord::Schema.define(version: 20170619132502) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "restaurant_specials", "restaurants"
+  add_foreign_key "restaurant_specials", "specials"
+  add_foreign_key "restaurants", "users"
+  add_foreign_key "reviews", "restaurants"
+  add_foreign_key "reviews", "users"
 end
