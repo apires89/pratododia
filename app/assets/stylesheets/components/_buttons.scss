@@ -1,0 +1,10 @@
+.btn-brand-color {
+  color: #ffffff;
+  background-color: $brand-color;
+  border: 1px solid $brand-color;
+  &:hover {
+    color: #ffffff;
+    border: 1px solid $brand-color;
+    background-color: lighten($brand-color, 10%);
+  }
+}

@@ -1,5 +1,8 @@
 <div class="search-wrapper">
   <%= simple_form_for :search, url: search_path do |f| %>
-    <%= f.input :query, input_html: { value: nil }, label: false, placeholder: "Bacalhau da Maria" %>
+    <%= f.input :query, input_html: { value: nil }, label: false, wrapper_html: {class: "form-inline"} do %>
+      <%= f.input :query, input_html: { value: nil }, label: false, placeholder: "Bacalhau da Maria" %>
+      <%= f.button :submit, "Pesquisar", :class => "btn-default btn-brand-color form-search-button" %>
+    <% end %>
   <% end %>
 </div>
