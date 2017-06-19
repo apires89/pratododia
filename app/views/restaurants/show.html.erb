@@ -1,0 +1,35 @@
+<div class="left-container">
+  <h1><%= @restaurant.name.upcase %></h1>
+  <% if current_user == @restaurant.user %>
+    <%= link_to "Edit Restaurant", edit_restaurant_path(@restaurant), class: "btn btn-default btn-rounded" %>
+  <% else %>
+    <%= render 'shared/avatar_card', {user: @restaurant.user, timestamp: @restaurant.created_at} %>
+  <% end %>
+  <h3>ABOUT THE <%= @cocktail.name.upcase %> COCKTAIL</h3>
+  <p><%= @cocktail.about %></p>
+  <h3>HOW TO MAKE THE <%= @cocktail.name.upcase %> COCKTAIL</h3>
+  <%= @cocktail.instructions %>
+  <hr>
+  <% if @cocktail.reviews.blank? %>
+    <p id="add-first-review">Be the first to leave a review</p>
+  <% end %>
+  <div id="reviews">
+    <% if @cocktail.reviews.any? %>
+      <h4>Reviews</h4>
+      <%= render partial: 'reviews/review', collection: @cocktail.reviews %>
+    <% end %>
+  </div>
+  <h4>Add A Review</h4>
+  <div>
+    <%= render 'reviews/new' %>
+  </div>
+
+</div>
+<div class="right-container">
+  <div class="img-responsive">
+    <%= image_tag @cocktail.photo, class: "img-responsive" %>
+  </div>
+  <% if @cocktail.doses.any? %>
+    <%= render 'ingredients' %>
+  <% end %>
+</div>
