@@ -11,8 +11,13 @@ Review.destroy_all
 User.destroy_all
 Special.destroy_all
 
-restadr = {[]}
+@client = GooglePlaces::Client.new(GOOGLE_API_KEY)
+lisbon = @client.spots("38.722252", "-9.139337", :types => ['restaurant','food'], :limit => 5)
+@client = GooglePlaces::Client.new("AIzaSyDs7-FQ4yLl2k9JnLk3FKcmeDgHqIWeUFE")
+@client.spots(-33.8670522, 151.1957362, :types => ['restaurant','food'])
+:radius => 100)
 
+AIzaSyAJsgp24HqEfX1yXzf55eVsXPETP7me7OI
 
 
 
@@ -33,7 +38,7 @@ puts "Creating Restaurants"
   user.save!
   if i.even?
     restaurant = Restaurant.new({
-      name: Faker::GameOfThrones,
+      name: lisbon,
       address: Faker::Address.street_address,
       city: "Lisboa",
       postcode: Faker::Address.postcode,
